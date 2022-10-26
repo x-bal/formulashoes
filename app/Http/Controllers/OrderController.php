@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
-use App\Services\Midtrans\CreateSnapTokenService;
 use Illuminate\Support\Facades\DB;
 
 
@@ -14,8 +14,15 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $title = 'My Order';
-        $orders = Order::where('user_id', auth()->user()->id)->latest()->get();
+        if (isAdmin()) {
+            $title = 'List Order';
+            $date = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+
+            $orders = Order::whereDate('created_at', $date)->latest()->get();
+        } else {
+            $title = 'My Order';
+            $orders = Order::where('user_id', auth()->user()->id)->latest()->get();
+        }
 
         return view('order.index', compact('title', 'orders'));
     }
@@ -48,6 +55,7 @@ class OrderController extends Controller
                 'no_order' => 'FMS' . date('dmy') . rand(100, 999),
                 'total_price' => $total,
                 'payment_status' => 1,
+                'status_laundry' => 'Booked',
             ];
 
             $order = Order::create($attr);
@@ -83,7 +91,9 @@ class OrderController extends Controller
     {
         try {
             DB::beginTransaction();
+
             $order->update(['payment_status' => request('status')]);
+
             DB::commit();
 
             return response()->json([
@@ -96,6 +106,23 @@ class OrderController extends Controller
                 'status' => 'error',
                 'message' => $th->getMessage()
             ]);
+        }
+    }
+
+    public function statuslaundry(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $order = Order::where('no_order', $request->no_order)->first();
+
+            $order->update(['status_laundry' => $request->status_laundry]);
+
+            DB::commit();
+
+            return redirect()->route('orders.index')->with('success', 'Status laundry berhasil diubah');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->with('error', $th->getMessage());
         }
     }
 }

@@ -31,13 +31,19 @@
         </div>
         <div class="card shadow">
             <div class="card-body p-5">
-                <div class="row mb-5">
+                <div class="row mb-3">
                     <div class="col-12 text-center mb-4">
                         <img src="./assets/images/logo.svg" class="navbar-brand-img brand-sm mx-auto mb-4" alt="...">
                         <h2 class="mb-0 text-uppercase">Invoice</h2>
                         <p class="text-muted"> Formula Shoes</p>
                     </div>
-
+                </div>
+                <div class="row mb-3 d-flex justify-content-center">
+                    <div class="col-6 mb-0 text-uppercase text-left">
+                        {{ $order->no_order }} <br>
+                        {{ $order->user->name }}
+                    </div>
+                    <div class="col-6 mb-0 text-uppercase text-right">{{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y H:i:s') }}</div>
                 </div>
                 <table class="table table-borderless table-striped">
                     <thead>
@@ -50,6 +56,9 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                        $total = 0;
+                        @endphp
                         @foreach($order->products as $product)
                         <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
@@ -59,9 +68,19 @@
                             <td class="text-right">{{ number_format($product->harga, 0, ',', '.') }}</td>
                             <td class="text-right">{{ $product->pivot->qty }}</td>
                             <td class="text-right">{{ number_format($product->harga * $product->pivot->qty, 0, ',', '.') }}</td>
+
+                            @php
+                            $total += $product->harga * $product->pivot->qty;
+                            @endphp
                         </tr>
                         @endforeach
                     </tbody>
+                    <tfoot>
+                        <tr>
+                            <th colspan="4">Total</th>
+                            <th class="text-right">Rp. {{ number_format($total, 0, ',', '.') }}</th>
+                        </tr>
+                    </tfoot>
                 </table>
             </div>
         </div>

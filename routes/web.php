@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -31,11 +33,18 @@ Route::middleware('auth')->group(function () {
     // Route Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/my-cart', [DashboardController::class, 'cart'])->name('mycart');
+
     // Route User
     Route::resource('users', UserController::class);
+    // Route Device
+    Route::resource('devices', DeviceController::class);
+    // Route History
+    Route::resource('histories', HistoryController::class);
+
     // Route Product
     Route::post('/products/cart', [ProductController::class, 'cart'])->name('products.cart');
     Route::resource('products', ProductController::class);
     // Route Order
+    Route::post('/orders/status-laundry', [OrderController::class, 'statuslaundry'])->name('orders.status');
     Route::resource('/orders', OrderController::class);
 });

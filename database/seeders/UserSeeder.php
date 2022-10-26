@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Device;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -29,6 +30,11 @@ class UserSeeder extends Seeder
             'password' => bcrypt('secret'),
             'level' => 'User',
             'status' => 1
+        ]);
+
+        Device::create([
+            'id_device' => 1,
+            'nama_device' => 'Device One'
         ]);
     }
 }

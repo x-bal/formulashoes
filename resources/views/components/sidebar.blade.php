@@ -47,6 +47,33 @@
                 </ul>
             </li>
         </ul>
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item {{ request()->is('devices*') || request()->is('rfid*') || request()->is('angkatan*') ? 'active' : '' }} dropdown">
+                <a href="#data-device" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle nav-link">
+                    <i class="fe fe-grid fe-16"></i>
+                    <span class="ml-3 item-text">Data Device</span>
+                </a>
+                <ul class="collapse list-unstyled pl-4 w-100" id="data-device">
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{ route('devices.index') }}"><span class="ml-1 item-text">Data Device</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link pl-3" href="{{ route('histories.index') }}"><span class="ml-1 item-text">History Device</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav flex-fill w-100 mb-2">
+            <li class="nav-item {{ request()->is('orders') ? 'active' : '' }} w-100">
+                <a class="nav-link" href="{{ route('orders.index') }}">
+                    <i class="fe fe-shopping-cart fe-16"></i>
+                    <span class="ml-3 item-text">List Order</span>
+                </a>
+            </li>
+        </ul>
         @endcan
 
         @can('isUser')

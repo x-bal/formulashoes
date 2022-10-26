@@ -124,7 +124,7 @@ class ProductController extends Controller
 
             $user = User::find(auth()->user()->id);
 
-            $user->products()->syncWithPivotValues($request->product_id, ['qty' => $request->quant]);
+            $user->products()->attach($request->product_id, ['qty' => $request->quant]);
 
             DB::commit();
 

@@ -75,14 +75,14 @@ class UserController extends Controller
             $attr = $updateUserRequest->all();
 
             if ($updateUserRequest->file('foto')) {
-                Storage::delete($user->foto);
+                $user->foto != null ? Storage::delete($user->foto) : '';
                 $foto = $updateUserRequest->file('foto');
                 $fotoUrl = $foto->storeAs('users', Str::slug($updateUserRequest->name) . '-' . Str::random(6) . '.' . $foto->extension());
             } else {
                 $fotoUrl = $user->foto;
             }
 
-            $attr['password'] = $updateUserRequest->has('password') ? bcrypt($updateUserRequest->password) : $user->password;
+            $attr['password'] = $updateUserRequest->password ? bcrypt($updateUserRequest->password) : $user->password;
             $attr['foto'] = $fotoUrl;
 
             $user->update($attr);

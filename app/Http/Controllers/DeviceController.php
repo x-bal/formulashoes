@@ -2,82 +2,77 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\Device\CreateDeviceRequest;
 use App\Models\Device;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class DeviceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $title = 'Data Device';
+        $devices = Device::get();
+
+        return view('device.index', compact('title', 'devices'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
+        $title = 'Tambah Device';
+        $device = new Device();
+        $method = 'POST';
+        $action = route('devices.store');
+
+        return view('device.form', compact('title', 'device', 'method', 'action'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function store(CreateDeviceRequest $request)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            Device::create($request->all());
+
+            DB::commit();
+
+            return redirect()->route('devices.index')->with('success', 'Device berhasil ditambahkan');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->with('error', $th->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
-     */
     public function show(Device $device)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Device $device)
     {
-        //
+        $title = 'Edit Device';
+        $method = 'PUT';
+        $action = route('devices.update', $device->id);
+
+        return view('device.form', compact('title', 'device', 'method', 'action'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, Device $device)
     {
-        //
+        try {
+            DB::beginTransaction();
+
+            $device->update($request->all());
+
+            DB::commit();
+
+            return redirect()->route('devices.index')->with('success', 'Device berhasil diubah');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->with('error', $th->getMessage());
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Device  $device
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Device $device)
     {
         //
