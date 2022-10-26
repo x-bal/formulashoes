@@ -19,6 +19,7 @@
         <div class="alert alert-danger">Gagal</div>
         @endif
 
+        @can('isUser')
         <div class="row align-items-center mb-4">
             <div class="col">
                 <h2 class="h5 page-title"><small class="text-muted text-uppercase">Invoice</small><br />{{ $order->no_order }}</h2>
@@ -29,6 +30,8 @@
                 @endif
             </div>
         </div>
+        @endcan
+
         <div class="card shadow">
             <div class="card-body p-5">
                 <div class="row mb-3">

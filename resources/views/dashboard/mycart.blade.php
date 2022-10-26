@@ -15,13 +15,8 @@
             <div class="card-header">{{ $title }}</div>
 
             <div class="card-body">
-                <form action="{{ route('orders.store') }}" method="post">
-                    @csrf
+                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#defaultModal"><i class="fe fe-arrow-right"></i> Proses Order</button>
 
-                    <div class="form-target"></div>
-                    <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
-                    <button type="submit" class="btn btn-primary mb-3"><i class="fe fe-arrow-right"></i> Proses Order</button>
-                </form>
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped">
                         <thead>
@@ -84,6 +79,40 @@
                     </table>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="defaultModal" tabindex="-1" role="dialog" aria-labelledby="defaultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="defaultModalLabel">Upload Foto</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('orders.store') }}" method="post">
+                @csrf
+
+                <div class="form-target"></div>
+                <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="foto">Foto</label><br>
+                        <input type="file" name="foto" id="foto">
+
+                        @error('foto')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn mb-2 btn-primary">Checkout</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
