@@ -20,6 +20,11 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function device()
+    {
+        return $this->belongsTo(Device::class);
+    }
+
     public function products()
     {
         return $this->belongsToMany(Product::class)->withPivot('qty');

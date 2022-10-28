@@ -44,9 +44,14 @@
                 <div class="row mb-3 d-flex justify-content-center">
                     <div class="col-6 mb-0 text-uppercase text-left">
                         {{ $order->no_order }} <br>
-                        {{ $order->user->name }}
+                        {{ $order->user->name }} <br>
+                        {{ $order->user->telepon }}
                     </div>
-                    <div class="col-6 mb-0 text-uppercase text-right">{{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y H:i:s') }}</div>
+                    <div class="col-6 mb-0 text-uppercase text-right">
+                        {{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y H:i:s') }} <br>
+                        {{ $order->user->alamat }} <br>
+                        {{ $order->device->nama_device ?? '-' }}
+                    </div>
                 </div>
                 <table class="table table-borderless table-striped">
                     <thead>
@@ -85,6 +90,20 @@
                         </tr>
                     </tfoot>
                 </table>
+
+                <div class="content text-center mt-5">
+                    <h4>Attachment</h4>
+                    <div class="row justify-content-between">
+                        <div class="col-md-6">
+                            <h6>Image From Upload</h6>
+                            <img src="{{ asset('/storage/' . $order->foto) }}" alt="" class="img-fluid">
+                        </div>
+                        <div class="col-md-6">
+                            <h6>Image From Device</h6>
+                            <img src="{{ asset('/storage/' . $order->after_laundry) }}" alt="" class="img-fluid">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

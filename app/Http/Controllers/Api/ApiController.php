@@ -25,6 +25,8 @@ class ApiController extends Controller
                     $waktu = 10 * $balance;
                     $keterangan = $order->status_laundry;
 
+                    $order->update(['device_id' => $device->id]);
+
                     return response()->json([
                         'status' => 'success',
                         'nama' => $uid->name,

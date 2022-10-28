@@ -62,7 +62,7 @@
                         <select name="level" id="level" class="form-control">
                             <option disabled selected>-- Pilih Level --</option>
                             <option {{ $user->level == 'Admin' ? 'selected' : '' }} value="Admin">Admin</option>
-                            <option {{ $user->level == 'Staff' ? 'selected' : '' }} value="Staff">Staff</option>
+                            <option {{ $user->level == 'User' ? 'selected' : '' }} value="User">User</option>
                         </select>
 
                         @error('level')

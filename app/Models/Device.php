@@ -14,4 +14,9 @@ class Device extends Model
     {
         return $this->hasMany(History::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
