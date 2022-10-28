@@ -92,7 +92,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('orders.store') }}" method="post">
+            <form action="{{ route('orders.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-target"></div>

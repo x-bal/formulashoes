@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\OrderController;
 use Illuminate\Http\Request;
@@ -9,3 +10,7 @@ Route::post('/products/cart', [ProductController::class, 'cart'])->name('product
 Route::get('/products/mycart/{user:id}', [ProductController::class, 'mycart'])->name('products.mycart');
 
 Route::get('/order/status/{order:no_order}', [OrderController::class, 'status']);
+
+// Route For Device
+Route::get('/tapping', [ApiController::class, 'tapping']);
+Route::post('/upload', [ApiController::class, 'upload']);

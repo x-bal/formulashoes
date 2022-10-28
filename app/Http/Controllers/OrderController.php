@@ -32,7 +32,8 @@ class OrderController extends Controller
         $request->validate([
             'user_id' => 'required|numeric',
             'product_id' => 'required|array',
-            'qty' => 'required|array'
+            'qty' => 'required|array',
+            'foto' => 'required|mimes:jpg,jpeg,png'
         ]);
 
         try {
@@ -50,12 +51,16 @@ class OrderController extends Controller
                 $data_to_sync[$product] = $pivot_data;
             }
 
+            $foto = $request->file('foto');
+            $fotoUrl = $foto->storeAs('orders/foto', date('dmYHis') . rand(100, 999) . '.' . $foto->extension());
+
             $attr = [
                 'user_id' => $user->id,
                 'no_order' => 'FMS' . date('dmy') . rand(100, 999),
                 'total_price' => $total,
                 'payment_status' => 1,
                 'status_laundry' => 'Booked',
+                'foto' => $fotoUrl
             ];
 
             $order = Order::create($attr);
