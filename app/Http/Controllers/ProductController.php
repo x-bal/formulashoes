@@ -77,7 +77,7 @@ class ProductController extends Controller
             if ($updateProductRequest->file('foto')) {
                 Storage::delete($product->foto);
                 $foto = $updateProductRequest->file('foto');
-                $fotoUrl = $foto->storeAs('products', Str::slug($updateProductRequest->name) . '-' . Str::random(6) . '.' . $foto->extension());
+                $fotoUrl = $foto->storeAs('products', Str::slug($updateProductRequest->nama_product) . '-' . Str::random(6) . '.' . $foto->extension());
             } else {
                 $fotoUrl = $product->foto;
             }
