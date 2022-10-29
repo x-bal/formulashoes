@@ -11,6 +11,15 @@
                     @method($method)
                     @csrf
                     <div class="form-group mb-3">
+                        <label for="uid"><sup class="text-danger">*</sup> UID</label>
+                        <input type="text" name="uid" id="uid" class="form-control" value="{{ $user->uid ?? old('uid') }}">
+
+                        @error('uid')
+                        <small class="text-danger">{{ $message }}</small>
+                        @enderror
+                    </div>
+
+                    <div class="form-group mb-3">
                         <label for="username"><sup class="text-danger">*</sup> Username</label>
                         <input type="text" name="username" id="username" class="form-control" value="{{ $user->username ?? old('username') }}">
 

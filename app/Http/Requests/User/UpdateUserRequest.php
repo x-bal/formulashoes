@@ -24,6 +24,7 @@ class UpdateUserRequest extends FormRequest
     public function rules()
     {
         return [
+            'uid' => 'required|string|min:3|unique:users,uid,' . $this->user->id,
             'username' => 'required|string|min:3|unique:users,username,' . $this->user->id,
             'name' => 'required|string',
             'telepon' => 'required|numeric',
