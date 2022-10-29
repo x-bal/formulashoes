@@ -15,6 +15,7 @@
                             <tr>
                                 <th class="text-dark">No</th>
                                 <th class="text-dark">Foto</th>
+                                <th class="text-dark">Uid</th>
                                 <th class="text-dark">Username</th>
                                 <th class="text-dark">Nama</th>
                                 <th class="text-dark">Level</th>
@@ -29,6 +30,7 @@
                                 <td class="text-center">
                                     <img src="{{ asset('storage/'. $user->foto) }}" alt="" class="avatar-img rounded-circle" width="50">
                                 </td>
+                                <td>{{ $user->uid }}</td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->level }}</td>
