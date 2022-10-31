@@ -111,7 +111,11 @@
 @stop
 
 @push('script')
+@if(config('midtrans.is_production') == false)
 <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+@else
+<script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+@endif
 <script>
     function status(payment_status) {
         let order_id = "{{ $order->no_order }}";

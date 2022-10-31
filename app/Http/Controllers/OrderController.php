@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         if (isAdmin()) {
             $title = 'List Order';
@@ -21,7 +21,16 @@ class OrderController extends Controller
             $orders = Order::whereDate('created_at', $date)->latest()->get();
         } else {
             $title = 'My Order';
-            $orders = Order::where('user_id', auth()->user()->id)->latest()->get();
+
+            if ($request->from && $request->to) {
+                $from = Carbon::parse($request->from)->format('Y-m-d 00:00:00');
+                $to = Carbon::parse($request->to)->addDay(1)->format('Y-m-d 00:00:00');
+
+                $orders = Order::where('user_id', auth()->user()->id)->where('created_at', '>=', $from)->where('created_at', '<', $to)->get();
+            } else {
+                $date = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+                $orders = Order::where('user_id', auth()->user()->id)->whereDate('created_at', $date)->orderBy('no_urut')->get();
+            }
         }
 
         return view('order.index', compact('title', 'orders'));
