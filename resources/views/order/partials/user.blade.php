@@ -1,8 +1,3 @@
-<div class="alert alert-info">
-    List order default tanggal sekarang. <br>
-    Untuk no urut mohon di isi secara berurutan dan tidak melebihi jumlah order.
-</div>
-
 <form action="" method="get" class="row mb-3">
     <div class="col-md-3">
         <label for="">From</label>
@@ -39,7 +34,11 @@
                     {{ $loop->iteration }}
                 </td>
                 <td>
-                    <input type="number" name="" id="" class="form-control form-control-sm" value="{{ $order->no_urut }}">
+                    @if($order->status_laundry == 'Booked')
+                    <input type="number" name="" data-id="{{ $order->no_order }}" class="form-control form-control-sm no-urut" value="{{ $order->no_urut }}" min="1" max="{{ count($orders) }}">
+                    @else
+                    {{ $order->no_urut }}
+                    @endif
                 </td>
                 <td>
                     {{ Carbon\Carbon::parse($order->created_at)->format('d/m/Y H:i:s') }}

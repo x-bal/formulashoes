@@ -10,6 +10,7 @@ Route::post('/products/cart', [ProductController::class, 'cart'])->name('product
 Route::get('/products/mycart/{user:id}', [ProductController::class, 'mycart'])->name('products.mycart');
 
 Route::get('/order/status/{order:no_order}', [OrderController::class, 'status']);
+Route::get('/order/nourut', [OrderController::class, 'nourut']);
 
 // Route For Device
 Route::get('/tapping', [ApiController::class, 'tapping']);

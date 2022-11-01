@@ -139,4 +139,39 @@ class OrderController extends Controller
             return back()->with('error', $th->getMessage());
         }
     }
+
+    public function nourut(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $date = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+
+            $total = Order::where('user_id', $request->user_id)->whereDate('created_at', $date)->count();
+
+            $order = Order::where('no_order', $request->id)->first();
+
+
+            if ($request->nourut > $total) {
+                return response()->json([
+                    'status' => 'failed',
+                    'message' => 'No urut tidak valid'
+                ]);
+            } else {
+                $order->update(['no_urut' => $request->nourut]);
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'No urut berhasil diubah'
+            ]);
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return response()->json([
+                'status' => 'failed',
+                'message' => $th->getMessage()
+            ]);
+        }
+    }
 }

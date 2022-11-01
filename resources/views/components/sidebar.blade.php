@@ -69,7 +69,7 @@
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item {{ request()->is('orders') ? 'active' : '' }} w-100">
                 <a class="nav-link" href="{{ route('orders.index') }}">
-                    <i class="fe fe-shopping-cart fe-16"></i>
+                    <i class="fe fe-clock fe-16"></i>
                     <span class="ml-3 item-text">List Order</span>
                 </a>
             </li>
@@ -92,7 +92,7 @@
             </li>
             <li class="nav-item {{ request()->is('orders') ? 'active' : '' }} w-100">
                 <a class="nav-link" href="{{ route('orders.index') }}">
-                    <i class="fe fe-shopping-cart fe-16"></i>
+                    <i class="fe fe-clock fe-16"></i>
                     <span class="ml-3 item-text">My Order</span>
                 </a>
             </li>
