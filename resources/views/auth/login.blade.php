@@ -23,44 +23,56 @@
 
 <body class="light ">
     <div class="wrapper vh-100">
-        <div class="row align-items-center h-100">
-            <form class="col-lg-3 col-md-4 col-10 mx-auto text-center" action="{{ route('login') }}" method="POST">
-                @csrf
-                <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
-                    <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
-                        <g>
-                            <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
-                            <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
-                            <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
-                        </g>
-                    </svg>
-                </a>
-                <h1 class="h6 mb-3">Silahkan login menggunakan akun anda.</h1>
-                <div class="form-group">
-                    <label for="username" class="">Username</label>
-                    <input type="text" id="username" class="form-control form-control-lg" placeholder="Username" required="" autofocus="" name="username">
+        <div class="row pt-5 h-100 w-100">
+            <div class="col-lg-7">
+                <div class="container ml-5">
+                    <h1 style="font-size: 64px;">Formula Shoes</h1>
+                    <h5 style="margin-top: -15px;">The essential of clean shoes</h5>
 
-                    @error('username')
-                    <small class="text-danger">{{ $message }}</small>
-                    @enderror
+                    <h4 style="margin-top: 10rem;">Belum punya akun? Daftar sekarang!</h4>
+                    <a href="/register" class="btn btn-lg btn-primary" style="width: 10rem; margin-top: 20px;">Daftar</a>
                 </div>
-                <div class="form-group">
-                    <label for="inputPassword" class="">Password</label>
-                    <input type="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required="" name="password">
-                </div>
+            </div> <!-- ./col -->
+            <div class="col-lg-5">
+                <div class=" mx-auto my-5 py-5 border shadow rounded" style="width: 25rem;">
+                    <form class="mx-auto text-center p-4" action="{{ route('login') }}" method="POST">
+                        @csrf
+                        <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="./index.html">
+                            <svg version="1.1" id="logo" class="navbar-brand-img brand-md" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 120 120" xml:space="preserve">
+                                <g>
+                                    <polygon class="st0" points="78,105 15,105 24,87 87,87 	" />
+                                    <polygon class="st0" points="96,69 33,69 42,51 105,51 	" />
+                                    <polygon class="st0" points="78,33 15,33 24,15 87,15 	" />
+                                </g>
+                            </svg>
+                        </a>
+                        <h1 class="h6 mb-3">Sign in</h1>
+                        <div class="form-group">
+                            <label for="username" class="">Username</label>
+                            <input type="text" id="username" class="form-control form-control-lg" placeholder="Username" required="" autofocus="" name="username">
 
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
-                <p class="mt-5 mb-3 text-muted">© 2022</p>
-            </form>
-        </div>
+                            @error('username')
+                            <small class="text-danger mt-2">{{ $message }}</small>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPassword" class="">Password</label>
+                            <input type="password" id="inputPassword" class="form-control form-control-lg" placeholder="Password" required="" name="password">
+                        </div>
+
+                        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+                    </form>
+                </div> <!-- .card -->
+            </div> <!-- ./col -->
+        </div> <!-- .row -->
     </div>
     <script src="js/jquery.min.js"></script>
     <script src="js/popper.min.js"></script>
     <script src="js/moment.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/simplebar.min.js"></script>
-    <script src='js/daterangepicker.js'></script>
-    <script src='js/jquery.stickOnScroll.js'></script>
+    <script src="js/daterangepicker.js"></script>
+    <script src="js/jquery.stickOnScroll.js"></script>
     <script src="js/tinycolor-min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/apps.js"></script>
