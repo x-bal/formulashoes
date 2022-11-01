@@ -1,6 +1,12 @@
 @extends('layouts.master', ['title' => 'Dashboard'])
 
 @section('content')
+
+@if(isUser())
+@if(auth()->user()->alamat == null)
+<div class="alert alert-info">Mohon lengkapi profile untuk bisa membuka semua menu, silahkan <a href="{{ route('profile') }}">Klik disini.</a></div>
+@endif
+@endif
 <div class="row">
     <div class="col-sm-6">
         <div class="card">

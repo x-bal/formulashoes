@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
     // Route Dashboard
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/my-cart', [DashboardController::class, 'cart'])->name('mycart');
+    Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
 
     // Route User
     Route::resource('users', UserController::class);

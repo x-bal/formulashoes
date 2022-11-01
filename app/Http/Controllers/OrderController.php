@@ -29,6 +29,10 @@ class OrderController extends Controller
                 $orders = Order::whereDate('created_at', $date)->latest()->get();
             }
         } else {
+            if (auth()->user()->alamat == null) {
+                return back();
+            }
+
             $title = 'My Order';
 
             if ($request->from && $request->to) {

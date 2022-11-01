@@ -29,7 +29,7 @@ class CreateUserRequest extends FormRequest
             'password' => 'required|string|min:6',
             'level' => 'required|string',
             'telepon' => 'required|numeric',
-            'foto' => 'required|mimes:jpg, jpeg, png'
+            'foto' => 'required|mimes:jpg,jpeg,png'
         ];
     }
 }

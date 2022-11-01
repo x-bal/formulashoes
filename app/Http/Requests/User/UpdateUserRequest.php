@@ -29,7 +29,7 @@ class UpdateUserRequest extends FormRequest
             'name' => 'required|string',
             'telepon' => 'required|numeric',
             'level' => 'required|string',
-            'foto' => 'mimes:jpg, jpeg, png'
+            'foto' => 'mimes:jpg,jpeg,png'
         ];
     }
 }

@@ -77,6 +77,7 @@
         @endcan
 
         @can('isUser')
+        @if(auth()->user()->alamat != null)
         <ul class="navbar-nav flex-fill w-100 mb-2">
             <li class="nav-item {{ request()->is('products*') ? 'active' : '' }} w-100">
                 <a class="nav-link" href="{{ route('products.index') }}">
@@ -97,6 +98,7 @@
                 </a>
             </li>
         </ul>
+        @endif
         @endcan
     </nav>
 </aside>

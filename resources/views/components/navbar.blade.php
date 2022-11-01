@@ -19,11 +19,11 @@
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle text-muted pr-0" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="avatar avatar-sm mt-2">
-                    <img src="{{ asset('/') }}assets/avatars/face-1.jpg" alt="..." class="avatar-img rounded-circle">
+                    <img src="{{ asset('storage/'.auth()->user()->foto) }}" alt="..." class="avatar-img rounded-circle">
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#"><i class="fe fe-user"></i> Profile</a>
+                <a class="dropdown-item" href="{{ route('profile') }}"><i class="fe fe-user"></i> Profile</a>
                 <a class="dropdown-item logout" href="#"><i class="fe fe-log-out"></i> Logout</a>
 
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

@@ -13,10 +13,20 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+    }
+
     public function index()
     {
         $title = 'Data Product';
         $products = Product::get();
+
+        if (isUser()) {
+            if (auth()->user()->alamat == null) {
+                return back();
+            }
+        }
 
         return view('product.index', compact('title', 'products'));
     }
