@@ -27,7 +27,10 @@ Route::get('/', function () {
     return view('auth.login-half');
 });
 
-Auth::routes();
+Auth::routes([
+    'verify' => false,
+    'reset' => false
+]);
 
 Route::middleware('auth')->group(function () {
     // Route Dashboard
