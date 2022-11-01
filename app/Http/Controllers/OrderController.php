@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\OrderExport;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Maatwebsite\Excel\Facades\Excel;
 
 class OrderController extends Controller
 {
@@ -16,9 +17,17 @@ class OrderController extends Controller
     {
         if (isAdmin()) {
             $title = 'List Order';
-            $date = Carbon::now('Asia/Jakarta')->format('Y-m-d');
 
-            $orders = Order::whereDate('created_at', $date)->latest()->get();
+            if ($request->from && $request->to) {
+                $from = Carbon::parse($request->from)->format('Y-m-d 00:00:00');
+                $to = Carbon::parse($request->to)->addDay(1)->format('Y-m-d 00:00:00');
+
+                $orders = Order::where('created_at', '>=', $from)->where('created_at', '<', $to)->get();
+            } else {
+                $date = Carbon::now('Asia/Jakarta')->format('Y-m-d');
+
+                $orders = Order::whereDate('created_at', $date)->latest()->get();
+            }
         } else {
             $title = 'My Order';
 
@@ -151,7 +160,7 @@ class OrderController extends Controller
             $order = Order::where('no_order', $request->id)->first();
 
 
-            if ($request->nourut > $total) {
+            if ($request->nourut == 0 && $request->nourut > $total) {
                 return response()->json([
                     'status' => 'failed',
                     'message' => 'No urut tidak valid'
@@ -173,5 +182,17 @@ class OrderController extends Controller
                 'message' => $th->getMessage()
             ]);
         }
+    }
+
+    public function export(Request $request)
+    {
+        if ($request->from && $request->to) {
+            $from = Carbon::parse($request->from)->format('Y-m-d 00:00:00');
+            $to = Carbon::parse($request->to)->addDay(1)->format('Y-m-d 00:00:00');
+
+            $orders = Order::where('created_at', '>=', $from)->where('created_at', '<', $to)->get();
+        }
+
+        return Excel::download(new OrderExport($orders), 'List Data Order.xlsx');
     }
 }

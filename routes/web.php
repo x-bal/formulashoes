@@ -46,5 +46,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('products', ProductController::class);
     // Route Order
     Route::post('/orders/status-laundry', [OrderController::class, 'statuslaundry'])->name('orders.status');
+    Route::get('/orders/export', [OrderController::class, 'export'])->name('orders.export');
     Route::resource('/orders', OrderController::class);
 });

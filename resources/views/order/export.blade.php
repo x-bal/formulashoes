@@ -1,25 +1,3 @@
-<form action="" class="row" method="GET">
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="from">From</label>
-            <input type="date" name="from" class="form-control" value="{{ request('from') }}" />
-        </div>
-    </div>
-    <div class="col-md-3">
-        <div class="form-group">
-            <label for="to">To</label>
-            <input type="date" name="to" class="form-control" value="{{ request('to') }}" />
-        </div>
-    </div>
-    <div class="col-md-3 mt-1">
-        <button type="submit" class="btn btn-primary mt-4">Submit</button>
-        <a href="{{ route('orders.index') }}" class="btn btn-secondary text-white mt-4"><i class="fe fe-refresh-cw"></i></a>
-        @if(request('from') && request('to'))
-        <a href="{{ route('orders.export') }}?from={{ request('from') }}&to={{ request('to') }}" class="btn btn-success text-white mt-4"><i class="fe fe-file-text"></i> Export</a>
-        @endif
-    </div>
-</form>
-
 <div class="table-responsive">
     <table class="table table-bordered table-striped" id="table">
         <thead>
@@ -79,36 +57,4 @@
             @endforeach
         </tbody>
     </table>
-</div>
-
-
-<div class="modal fade" id="modalStatusLaundry" tabindex="-1" role="dialog" aria-labelledby="modalStatusLaundryLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="modalStatusLaundryLabel">Ubah Status Laundry</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form action="{{ route('orders.status') }}" method="post">
-                @csrf
-                <input type="hidden" id="no_order" name="no_order" value="">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="status_laundry">Status Laundry</label>
-                        <select name="status_laundry" id="status_laundry" class="form-control">
-                            <option value="Booked">Booked</option>
-                            <option value="Sedang Diproses">Sedang Diproses</option>
-                            <option value="Selesai">Selesai</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn mb-2 btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn mb-2 btn-primary">Ubah Status</button>
-                </div>
-            </form>
-        </div>
-    </div>
 </div>
