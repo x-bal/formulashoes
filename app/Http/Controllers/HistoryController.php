@@ -7,14 +7,12 @@ use Illuminate\Http\Request;
 
 class HistoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $histpries = History::latest()->limit(1000)->get();
+        $title = 'History Device';
+
+        return view('history.index', compact('histories', 'title'));
     }
 
     /**

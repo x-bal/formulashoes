@@ -7,7 +7,10 @@
             <div class="card-header">{{ $title }}</div>
 
             <div class="card-body">
-                <form action="" method="post">
+                <form action="{{ route('profile.update') }}" method="post">
+                    @csrf
+                    <input type="hidden" name="level" value="User">
+
                     <div class="form-group mb-3">
                         <label for="uid"><sup class="text-danger">*</sup> UID</label>
                         <input type="text" name="uid" id="uid" class="form-control" value="{{ $user->uid ?? old('uid') }}">
@@ -60,19 +63,6 @@
                         </textarea>
 
                         @error('alamat')
-                        <small class="text-danger">{{ $message }}</small>
-                        @enderror
-                    </div>
-
-                    <div class="form-group mb-3">
-                        <label for="level"><sup class="text-danger">*</sup> Level</label>
-                        <select name="level" id="level" class="form-control">
-                            <option disabled selected>-- Pilih Level --</option>
-                            <option {{ $user->level == 'Admin' ? 'selected' : '' }} value="Admin">Admin</option>
-                            <option {{ $user->level == 'User' ? 'selected' : '' }} value="User">User</option>
-                        </select>
-
-                        @error('level')
                         <small class="text-danger">{{ $message }}</small>
                         @enderror
                     </div>

@@ -14,14 +14,4 @@ class History extends Model
     {
         return $this->belongsTo(Device::class);
     }
-
-    public function siswa()
-    {
-        return $this->belongsTo(Siswa::class);
-    }
-
-    public function jadwal()
-    {
-        return $this->belongsTo(Jadwal::class);
-    }
 }

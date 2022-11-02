@@ -37,6 +37,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/my-cart', [DashboardController::class, 'cart'])->name('mycart');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
+    Route::post('/profile', [DashboardController::class, 'updateprofile'])->name('profile.update');
 
     // Route User
     Route::resource('users', UserController::class);
