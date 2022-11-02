@@ -49,7 +49,7 @@
                 <td>Rp. {{ number_format($order->total_price, 0, ',', '.') }}</td>
                 <td>
                     @if($order->payment_status == 1)
-                    <div class="badge badge-primary text-white p-2">Menunggu Pembayaran</div>
+                    <div class="badge badge-primary text-white p-2 pay-button" data-token="{{ $order->snap_token }}" style="cursor: pointer;">Bayar</div>
                     @endif
                     @if($order->payment_status == 2)
                     <div class="badge badge-success text-white p-2">Sudah Dibayar</div>

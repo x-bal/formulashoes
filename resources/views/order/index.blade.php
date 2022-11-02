@@ -78,6 +78,33 @@
         });
     })
 </script>
+
+@if(config('midtrans.is_production') == false)
+<script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+@else
+<script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
+@endif
+<script>
+    $(".table").on('click', '.pay-button', function() {
+        let token = $(this).attr('data-token');
+
+        snap.pay(token, {
+            // Optional
+            onSuccess: function(result) {
+                status(2)
+            },
+            // Optional
+            onPending: function(result) {
+                status(3)
+                console.log(result)
+            },
+            // Optional
+            onError: function(result) {
+                status(4)
+            }
+        });
+    })
+</script>
 @endif
 
 @endpush
