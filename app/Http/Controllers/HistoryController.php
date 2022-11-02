@@ -9,7 +9,7 @@ class HistoryController extends Controller
 {
     public function index()
     {
-        $histpries = History::latest()->limit(1000)->get();
+        $histories = History::latest()->limit(1000)->get();
         $title = 'History Device';
 
         return view('history.index', compact('histories', 'title'));
