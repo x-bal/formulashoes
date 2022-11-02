@@ -7,7 +7,7 @@
             <div class="card-header">{{ $title }}</div>
 
             <div class="card-body">
-                <form action="{{ route('profile.update', $user->id) }}" method="post">
+                <form action="{{ route('profile.update', $user->id) }}" method="post" enctype="multipart/form-data">
                     @csrf
                     <input type="hidden" name="level" value="User">
 
