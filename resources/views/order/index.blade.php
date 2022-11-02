@@ -65,13 +65,21 @@
                 },
                 success: function(response) {
                     if (response.status == 'success') {
-                        $(".target-alert").append(`<div class="alert alert-success">
-                        ` + response.message + `</div>`)
+                        $(".target-alert").append(`<div class="alert alert-success alert-on">
+                    ` + response.message + `</div>`)
+
+                        setTimeout(function() {
+                            $(".alert-on").remove()
+                        }, 2000)
                     }
 
                     if (response.status == 'failed') {
-                        $(".target-alert").append(`<div class="alert alert-danger">
-                        ` + response.message + `</div>`)
+                        $(".target-alert").append(`<div class="alert alert-danger alert-off">
+                    ` + response.message + `</div>`)
+
+                        setTimeout(function() {
+                            $(".alert-off").remove()
+                        }, 2000)
                     }
                 }
             })
@@ -85,8 +93,23 @@
 <script src="https://app.midtrans.com/snap/snap.js" data-client-key="{{ config('midtrans.client_key') }}"></script>
 @endif
 <script>
+    function status(payment_status, order_id) {
+
+        $.ajax({
+            url: '/api/order/status/' + order_id,
+            type: 'GET',
+            data: {
+                status: payment_status
+            },
+            success: function(response) {
+                document.location.href = response.message
+            }
+        })
+    }
+
     $(".table").on('click', '.pay-button', function() {
         let token = $(this).attr('data-token');
+        let order_id = $(this).attr('id');
 
         snap.pay(token, {
             // Optional

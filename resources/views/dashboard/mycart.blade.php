@@ -155,7 +155,9 @@
                             user_id: user_id,
                             qty: currentVal - 1
                         },
-                        success: function(response) {}
+                        success: function(response) {
+                            document.location.href = "{{ route('mycart') }}"
+                        }
                     })
                 }
                 if (parseInt(input.val()) == input.attr('min')) {
@@ -176,7 +178,9 @@
                             user_id: user_id,
                             qty: currentVal + 1
                         },
-                        success: function(response) {}
+                        success: function(response) {
+                            document.location.href = "{{ route('mycart') }}"
+                        }
                     })
                 }
 
