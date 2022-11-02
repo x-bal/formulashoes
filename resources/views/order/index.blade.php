@@ -70,10 +70,12 @@
 
                         setTimeout(function() {
                             $(".alert-on").remove()
+                            location.reload()
                         }, 2000)
                     }
 
                     if (response.status == 'failed') {
+                        location.reload()
                         $(".target-alert").append(`<div class="alert alert-danger alert-off">
                     ` + response.message + `</div>`)
 

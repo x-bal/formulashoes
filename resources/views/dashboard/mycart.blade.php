@@ -156,7 +156,7 @@
                             qty: currentVal - 1
                         },
                         success: function(response) {
-                            document.location.href = "{{ route('mycart') }}"
+                            location.reload()
                         }
                     })
                 }
@@ -179,7 +179,7 @@
                             qty: currentVal + 1
                         },
                         success: function(response) {
-                            document.location.href = "{{ route('mycart') }}"
+                            location.reload()
                         }
                     })
                 }
