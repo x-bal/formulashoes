@@ -36,7 +36,7 @@
             <div class="card-body p-5">
                 <div class="row mb-3">
                     <div class="col-12 text-center mb-4">
-                        <img src="./assets/images/logo.svg" class="navbar-brand-img brand-sm mx-auto mb-4" alt="...">
+                        <img src="{{ asset('/') }}assets/images/formulashoe.png" alt="" class="navbar-brand-img mb-4" width="140">
                         <h2 class="mb-0 text-uppercase">Invoice</h2>
                         <p class="text-muted"> Formula Shoes</p>
                     </div>

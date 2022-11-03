@@ -38,6 +38,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/my-cart', [DashboardController::class, 'cart'])->name('mycart');
     Route::get('/profile', [DashboardController::class, 'profile'])->name('profile');
     Route::post('/profile/{user:id}', [DashboardController::class, 'update'])->name('profile.update');
+    Route::get('/history', [DashboardController::class, 'history'])->name('history');
 
     // Route User
     Route::resource('users', UserController::class);

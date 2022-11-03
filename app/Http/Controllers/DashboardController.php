@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\Order;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
@@ -59,5 +61,24 @@ class DashboardController extends Controller
             DB::rollBack();
             return back()->with('error', $th->getMessage());
         }
+    }
+
+    public function history(Request $request)
+    {
+        $title = 'My History';
+        if (auth()->user()->alamat == null) {
+            return back();
+        }
+
+        if ($request->from && $request->to) {
+            $from = Carbon::parse($request->from)->format('Y-m-d 00:00:00');
+            $to = Carbon::parse($request->to)->addDay(1)->format('Y-m-d 00:00:00');
+
+            $orders = Order::where('user_id', auth()->user()->id)->where('created_at', '>=', $from)->where('created_at', '<', $to)->where('status_laundry', 'Selesai')->get();
+        } else {
+            $orders = Order::where('user_id', auth()->user()->id)->where('status_laundry', 'Selesai')->latest()->get();
+        }
+
+        return view('dashboard.history', compact('title', 'orders'));
     }
 }
