@@ -15,7 +15,14 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('dashboard.index');
+        $month = Carbon::now('Asia/Jakarta')->format('m');
+
+        if (auth()->user()->level == 'User') {
+            $order = Order::where('user_id', auth()->user()->id)->whereMonth('created_at', $month)->count();
+            $cart = User::find(auth()->user()->id)->products()->count();
+        }
+
+        return view('dashboard.index', compact('order', 'cart'));
     }
 
     public function cart()
