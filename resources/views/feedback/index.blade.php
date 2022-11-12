@@ -37,7 +37,6 @@
 @else
 <div class="row">
     <div class="col-md-12">
-        @if(auth()->user()->feedback == null)
         <form action="{{ route('feedback.store') }}" method="post">
             @csrf
 
@@ -55,12 +54,23 @@
                 <button type="submit" class="btn btn-primary"><i class="fe fe-send"></i> Send</button>
             </div>
         </form>
-        @else
-        <div class="alert alert-success">
-            Terima kasih telah memberikan feedback kepada kami.
-        </div>
-        @endif
     </div>
+</div>
+
+<div class="row">
+    @foreach($feedbacks as $feedback)
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-3">Your Feedback</h5>
+
+                <p>
+                    {{ $feedback->feedback }}
+                </p>
+            </div>
+        </div>
+    </div>
+    @endforeach
 </div>
 @endcan
 @stop

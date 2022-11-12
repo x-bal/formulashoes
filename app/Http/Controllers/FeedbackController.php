@@ -11,7 +11,11 @@ class FeedbackController extends Controller
     public function index()
     {
         $title = 'Feedback';
-        $feedbacks = Feedback::get();
+        if (auth()->user()->level == 'User') {
+            $feedbacks = Feedback::where('user_id', auth()->user()->id)->latest()->limit(3)->get();
+        } else {
+            $feedbacks = Feedback::get();
+        }
 
         return view('feedback.index', compact('title', 'feedbacks'));
     }
