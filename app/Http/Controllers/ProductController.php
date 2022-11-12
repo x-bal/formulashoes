@@ -134,11 +134,31 @@ class ProductController extends Controller
 
             $user = User::find(auth()->user()->id);
 
-            $user->products()->attach($request->product_id, ['qty' => $request->quant]);
+            foreach ($user->products as $prod) {
+                $qty = $prod->pivot->qty;
+                $user->products()->syncWithPivotValues($request->product_id, ['qty' => $qty + $request->quant]);
+            }
 
             DB::commit();
 
             return back()->with('success', 'Product berhasil ditambahkan ke cart');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function remove(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user = User::find($request->user);
+            $user->products()->detach($request->product);
+
+            DB::commit();
+
+            return back()->with('success', 'Product berhasil dihapus');
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->with('error', $th->getMessage());

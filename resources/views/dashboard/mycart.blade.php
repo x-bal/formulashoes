@@ -24,9 +24,9 @@
                                 <th class="text-dark text-center">
                                     <input type="checkbox" id="check-all">
                                 </th>
-                                <th class="text-dark">Item</th>
-                                <th class="text-dark">Total</th>
-                                <th class="text-dark">Action</th>
+                                <th class="text-dark text-center">Item</th>
+                                <th class="text-dark text-center">Total</th>
+                                <th class="text-dark text-center">Action</th>
                             </tr>
                         </thead>
 
@@ -36,7 +36,7 @@
                                 <td class="text-center">
                                     <input type="checkbox" class="check-product" data-id="{{ $product->id }}" data-qty="{{ $product->pivot->qty }}">
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <div class="row align-items-center">
                                         <div class="col-auto">
                                             <img src="{{ asset('/storage/'. $product->foto) }}" alt="{{ $product->nama_product }}" class="avatar-img rounded" width="80">
@@ -67,11 +67,11 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
+                                <td class="text-center">
                                     <small class="text-dark"><b>Rp. {{ number_format($product->harga * $product->pivot->qty, 0, ',', '.') }}</b></small>
                                 </td>
-                                <td>
-                                    <a href="" class="btn btn-danger"><i class="fe fe-trash"></i></a>
+                                <td class="text-center">
+                                    <a href="{{ route('products.remove') }}?user={{ $product->pivot->user_id }}&product={{ $product->id }}" class="btn btn-danger"><i class="fe fe-trash"></i></a>
                                 </td>
                             </tr>
                             @endforeach

@@ -13,11 +13,11 @@
                     <table class="table table-bordered table-striped" id="table">
                         <thead>
                             <tr>
-                                <th class="text-dark">No</th>
-                                <th class="text-dark">Id Device</th>
-                                <th class="text-dark">Nama Device</th>
-                                <th class="text-dark">Status</th>
-                                <th class="text-dark">Action</th>
+                                <th>No</th>
+                                <th>Id Device</th>
+                                <th>Nama Device</th>
+                                <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 

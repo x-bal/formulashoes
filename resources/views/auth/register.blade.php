@@ -29,7 +29,7 @@
                     <h1 style="font-size: 64px;">Formula Shoes</h1>
                     <h5 style="margin-top: -15px;">The essential of clean shoes</h5>
 
-                    <h4 style="margin-top: 10rem;">Untuk melakukan pendafataran akun <br> Silahkan tap RFID anda (E-KTP, E-KARTU MAHASISWA atau Emoney) <br> di mesin kami.</h4>
+                    <h4 style="margin-top: 15rem;">Untuk melakukan pendafataran akun <br> Silahkan tap RFID anda (E-KTP, E-KARTU MAHASISWA atau Emoney) <br> di mesin kami.</h4>
                     <h5 style="margin-top: 28px;">Sudah punya akun? Silahkan Login!</h5>
                     <a href="/login" class="btn btn-lg btn-primary" style="width: 10rem;">Login</a>
                 </div>

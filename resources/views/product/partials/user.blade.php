@@ -46,7 +46,7 @@
                                     <span class="fe fe-minus"></span>
                                 </button>
                             </span>
-                            <input type="text" name="quant" class="form-control input-number" value="1" min="1" max="20">
+                            <input type="text" name="quant" class="form-control input-number text-center" value="1" min="1" max="20">
                             <span class="input-group-append">
                                 <button type="button" class="btn btn-outline-primary btn-number" data-type="plus" data-field="quant">
                                     <span class="fe fe-plus"></span>

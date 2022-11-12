@@ -3,6 +3,7 @@
 use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\FeedbackController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\OrderController;
@@ -49,9 +50,13 @@ Route::middleware('auth')->group(function () {
 
     // Route Product
     Route::post('/products/cart', [ProductController::class, 'cart'])->name('products.cart');
+    Route::get('/products/remove', [ProductController::class, 'remove'])->name('products.remove');
     Route::resource('products', ProductController::class);
     // Route Order
     Route::post('/orders/status-laundry', [OrderController::class, 'statuslaundry'])->name('orders.status');
     Route::get('/orders/export', [OrderController::class, 'export'])->name('orders.export');
     Route::resource('/orders', OrderController::class);
+
+    // Route Feedback
+    Route::resource('feedback', FeedbackController::class);
 });

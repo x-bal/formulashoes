@@ -17,13 +17,13 @@
     <table class="table table-bordered table-striped" id="table">
         <thead>
             <tr>
-                <th class="text-dark">No</th>
-                <th class="text-dark">No Urut</th>
-                <th class="text-dark">Tanggal</th>
-                <th class="text-dark">No Order</th>
-                <th class="text-dark">Total</th>
-                <th class="text-dark">Status Pembayaran</th>
-                <th class="text-dark">Status Laundry</th>
+                <th>No</th>
+                <th>No Urut</th>
+                <th>Tanggal</th>
+                <th>No Order</th>
+                <th>Total</th>
+                <th class=" text-center">Status Pembayaran</th>
+                <th class=" text-center">Status Laundry</th>
             </tr>
         </thead>
 
@@ -47,7 +47,7 @@
                     <a href="{{ route('orders.show', $order->no_order) }}">{{ $order->no_order }}</a>
                 </td>
                 <td>Rp. {{ number_format($order->total_price, 0, ',', '.') }}</td>
-                <td>
+                <td class="text-center">
                     @if($order->payment_status == 1)
                     <div class="badge badge-primary text-white p-2 pay-button" id="{{ $order->no_order }}" data-token="{{ $order->snap_token }}" style="cursor: pointer;">Bayar</div>
                     @endif
@@ -61,7 +61,7 @@
                     <div class="badge badge-danger text-white p-2">Pembayaran Gagal</div>
                     @endif
                 </td>
-                <td>
+                <td class="text-center">
                     @if($order->status_laundry == 'Booked')
                     <div class="badge badge-primary text-white p-2">{{ $order->status_laundry }}</div>
                     @endif

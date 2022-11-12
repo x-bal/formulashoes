@@ -24,13 +24,13 @@
     <table class="table table-bordered table-striped" id="table">
         <thead>
             <tr>
-                <th class="text-dark">No</th>
-                <th class="text-dark">Tanggal</th>
-                <th class="text-dark">No Order</th>
-                <th class="text-dark">Nama</th>
-                <th class="text-dark">Total</th>
-                <th class="text-dark text-center">Payment Status</th>
-                <th class="text-dark text-center">Laundry Status</th>
+                <th>No</th>
+                <th>Tanggal</th>
+                <th>No Order</th>
+                <th>Nama</th>
+                <th>Total</th>
+                <th class="text-center">Payment Status</th>
+                <th class="text-center">Laundry Status</th>
             </tr>
         </thead>
 

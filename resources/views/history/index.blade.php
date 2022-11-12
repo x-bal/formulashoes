@@ -12,10 +12,10 @@
                     <table class="table table-bordered table-striped" id="table">
                         <thead>
                             <tr>
-                                <th class="text-dark">No</th>
-                                <th class="text-dark">Tanggal</th>
-                                <th class="text-dark">Nama Device</th>
-                                <th class="text-dark">Keterangan</th>
+                                <th>No</th>
+                                <th>Tanggal</th>
+                                <th>Nama Device</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
 

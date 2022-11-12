@@ -13,13 +13,13 @@
                     <table class="table table-bordered table-striped" id="table">
                         <thead>
                             <tr>
-                                <th class="text-dark">No</th>
-                                <th class="text-dark">Foto</th>
-                                <th class="text-dark">Uid</th>
-                                <th class="text-dark">Username</th>
-                                <th class="text-dark">Nama</th>
-                                <th class="text-dark">Level</th>
-                                <th class="text-dark">Action</th>
+                                <th>No</th>
+                                <th>Foto</th>
+                                <th>Uid</th>
+                                <th>Username</th>
+                                <th>Nama</th>
+                                <th>Level</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 

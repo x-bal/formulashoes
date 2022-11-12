@@ -23,13 +23,13 @@
 
 <body class="light ">
     <div class="wrapper vh-100">
-        <div class="row pt-5 h-100 w-100">
-            <div class="col-lg-7">
+        <div class="row pt-5 h-100 w-100 d-flex">
+            <div class="col-lg-7" style="margin-top: 50px;">
                 <div class="container ml-5">
                     <h1 style="font-size: 64px;">Formula Shoes</h1>
                     <h5 style="margin-top: -15px;">The essential of clean shoes</h5>
 
-                    <h4 style="margin-top: 10rem;">Belum punya akun? Daftar sekarang!</h4>
+                    <h4 style="margin-top: 15rem;">Belum punya akun? Daftar sekarang!</h4>
                     <a href="/register" class="btn btn-lg btn-primary" style="width: 10rem; margin-top: 20px;">Daftar</a>
                 </div>
             </div> <!-- ./col -->

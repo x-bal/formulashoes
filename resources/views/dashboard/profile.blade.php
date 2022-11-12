@@ -39,7 +39,7 @@
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="password"><sup class="text-danger">*</sup> Password</label>
+                        <label for="password"> Password Baru</label>
                         <input type="password" name="password" id="password" class="form-control" value="{{ old('password') }}">
 
                         @error('password')
