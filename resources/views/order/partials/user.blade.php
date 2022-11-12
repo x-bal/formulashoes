@@ -55,7 +55,7 @@
                     <div class="badge badge-success text-white p-2">Sudah Dibayar</div>
                     @endif
                     @if($order->payment_status == 3)
-                    <div class="badge badge-warning text-white p-2">Pending</div>
+                    <div class="badge badge-warning text-white p-2 pay-button" id="{{ $order->no_order }}" data-token="{{ $order->snap_token }}" style="cursor: pointer;">Pending</div>
                     @endif
                     @if($order->payment_status == 4)
                     <div class="badge badge-danger text-white p-2">Pembayaran Gagal</div>

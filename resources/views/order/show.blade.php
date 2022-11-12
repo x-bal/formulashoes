@@ -15,7 +15,7 @@
         <div class="alert alert-warning">Pending</div>
         @endif
 
-        @if($order->payment_status == 3)
+        @if($order->payment_status == 4)
         <div class="alert alert-danger">Gagal</div>
         @endif
 
@@ -25,7 +25,7 @@
                 <h2 class="h5 page-title"><small class="text-muted text-uppercase">Invoice</small><br />{{ $order->no_order }}</h2>
             </div>
             <div class="col-auto">
-                @if($order->payment_status == 1)
+                @if($order->payment_status == 1 || $order->payment_status == 3)
                 <button type="button" class="btn btn-primary" id="pay-button">Pay</button>
                 @endif
             </div>
