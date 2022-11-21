@@ -115,6 +115,19 @@
                 }
             })
         })
+
+        $(document).ready(function() {
+            let mode = localStorage.getItem('mode')
+            let image = '';
+
+            if (mode == 'light') {
+                image = "{{ asset('images/fs-white.png') }}";
+            } else {
+                image = "{{ asset('images/fs-dark.png') }}";
+            }
+
+            $(".img-logo").attr('src', image)
+        })
     </script>
 
     @stack('script')

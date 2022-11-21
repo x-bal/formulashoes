@@ -87,7 +87,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="defaultModalLabel">Upload Foto</h5>
+                <h5 class="modal-title" id="defaultModalLabel">Upload foto sepatu anda untuk melanjutkan pembayaran</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

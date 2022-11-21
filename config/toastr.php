@@ -25,5 +25,6 @@ return array(
 
     'options' => array(
         'closeDuration'     => 100,
+        'showDuration' => 100
     ),
 );

@@ -14,7 +14,9 @@
                         <thead>
                             <tr>
                                 <th>No</th>
+                                <th>Waktu</th>
                                 <th>Nama</th>
+                                <th>No Telp</th>
                                 <th>Feedback</th>
                             </tr>
                         </thead>
@@ -23,7 +25,9 @@
                             @foreach($feedbacks as $feedback)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>{{ Carbon\Carbon::parse($feedback->created_at)->format('d/m/Y H:i:s') }}</td>
                                 <td>{{ $feedback->user->name }}</td>
+                                <td>{{ $feedback->user->telepon }}</td>
                                 <td>{{ $feedback->feedback }}</td>
                             </tr>
                             @endforeach

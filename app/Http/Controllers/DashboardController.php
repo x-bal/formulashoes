@@ -18,11 +18,11 @@ class DashboardController extends Controller
         $month = Carbon::now('Asia/Jakarta')->format('m');
 
         if (auth()->user()->level == 'User') {
-            $order = Order::where('user_id', auth()->user()->id)->whereMonth('created_at', $month)->count();
+            $order = Order::where('user_id', auth()->user()->id)->whereMonth('created_at', $month)->where('status_laundry', 'Selesai')->count();
             $cart = User::find(auth()->user()->id)->products()->count();
         } else {
-            $order = Order::whereMonth('created_at', $month)->count();
-            $cart = Order::whereMonth('created_at', $month)->sum('total_price');
+            $order = Order::whereMonth('created_at', $month)->where('status_laundry', 'Selesai')->count();
+            $cart = Order::whereMonth('created_at', $month)->where('status_laundry', 'Selesai')->sum('total_price');
         }
 
         return view('dashboard.index', compact('order', 'cart'));

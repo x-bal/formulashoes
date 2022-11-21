@@ -1,7 +1,9 @@
 @extends('layouts.master', ['title' => 'Dashboard'])
 
 @section('content')
-
+<div class="alert alert-success">
+    Hallo {{ auth()->user()->name }} Selamat datang di Formulashoe, Have a nice day!
+</div>
 @if(isUser())
 @if(auth()->user()->alamat == null)
 <div class="alert alert-info">Mohon lengkapi profile untuk bisa membuka semua menu, silahkan <a href="{{ route('profile') }}">Klik disini.</a></div>

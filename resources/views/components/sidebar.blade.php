@@ -6,7 +6,7 @@
         <!-- nav bar -->
         <div class="w-100 mb-4 d-flex">
             <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="{{ route('dashboard') }}">
-                <img src="{{ asset('/') }}assets/images/formulashoe.png" alt="" class="navbar-brand-img" width="140">
+                <img src="" alt="" class="navbar-brand-img img-logo" width="140">
             </a>
         </div>
         <ul class="navbar-nav flex-fill w-100 mb-2">

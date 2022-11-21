@@ -19,7 +19,7 @@ class ProductController extends Controller
 
     public function index()
     {
-        $title = 'Data Product';
+        $title = auth()->user()->level == 'Admin' ? 'Data Product' : 'Lest Clean Your Shoes!';
         $products = Product::get();
 
         if (isUser()) {
