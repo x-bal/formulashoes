@@ -34,11 +34,11 @@
                 </div>
             </div> <!-- ./col -->
             <div class="col-lg-5">
-                <div class=" mx-auto my-5 py-5 border shadow rounded" style="width: 25rem;">
+                <div class=" mx-auto my-5 py-5 rounded shadow form-login" style="width: 25rem;">
                     <form class="mx-auto text-center p-4" action="{{ route('login') }}" method="POST">
                         @csrf
                         <a class="navbar-brand mx-auto mt-2 flex-fill text-center" href="/">
-                            <img src="{{ asset('/') }}assets/images/formulashoe.png" alt="" class="navbar-brand-img mb-3" width="150">
+                            <img src="" alt="" class="navbar-brand-img img-logo mb-3" width="150">
                         </a>
                         <h1 class="h6 mb-3">Sign in</h1>
                         <div class="form-group">
@@ -80,6 +80,23 @@
         }
         gtag('js', new Date());
         gtag('config', 'UA-56159088-1');
+
+        $(document).ready(function() {
+            let mode = localStorage.getItem('mode')
+            let image = '';
+            let border = ''
+
+            if (mode == 'light') {
+                image = "{{ asset('images/fs-white.png') }}";
+                border = '1px solid black !important'
+            } else {
+                image = "{{ asset('images/fs-dark.png') }}";
+                border = '1px solid white !important'
+            }
+
+            $(".form-login").css('border', border)
+            $(".img-logo").attr('src', image)
+        })
     </script>
 </body>
 
