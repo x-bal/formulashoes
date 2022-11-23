@@ -5,7 +5,7 @@
     Hallo {{ auth()->user()->name }} Selamat datang di Formulashoe, Have a nice day!
 </div>
 @if(isUser())
-@if(auth()->user()->alamat == null)
+@if(auth()->user()->alamat == null && auth()->user()->alamat_lengkap == null)
 <div class="alert alert-info">Mohon lengkapi profile untuk bisa membuka semua menu, silahkan <a href="{{ route('profile') }}">Klik disini.</a></div>
 @else
 <div class="row">

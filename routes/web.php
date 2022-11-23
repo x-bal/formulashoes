@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\AngkatanController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DeviceController;
@@ -59,4 +60,6 @@ Route::middleware('auth')->group(function () {
 
     // Route Feedback
     Route::resource('feedback', FeedbackController::class);
+    // Route Alamat
+    Route::resource('alamat', AlamatController::class);
 });

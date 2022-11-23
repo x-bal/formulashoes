@@ -28,6 +28,7 @@
                 <th>Tanggal</th>
                 <th>No Order</th>
                 <th>Nama</th>
+                <th>Alamat</th>
                 <th>Total</th>
                 <th class="text-center">Payment Status</th>
                 <th class="text-center">Laundry Status</th>
@@ -48,6 +49,15 @@
                 </td>
                 <td>
                     {{ $order->user->name }}
+                </td>
+                <td>
+                    @if($order->user->alamat != 'custom')
+                    {{ $order->user->alamat->alamat }} <br>
+                    Gedung : {{ $order->user->nama_gedung }} <br>
+                    No Kamar : {{ $order->user->no_kamar }} <br>
+                    @else
+                    {{ $order->user->alamat_lengkap }}
+                    @endif
                 </td>
                 <td>Rp. {{ number_format($order->total_price, 0, ',', '.') }}</td>
                 <td class="text-center">

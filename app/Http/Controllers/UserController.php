@@ -82,6 +82,18 @@ class UserController extends Controller
                 $fotoUrl = $user->foto;
             }
 
+            if (request('alamat') != 'custom') {
+                $attr['alamat'] = request('alamat');
+                $attr['nama_gedung'] = request('nama_gedung');
+                $attr['no_kamar'] = request('no_kamar');
+                $attr['alamat_lengkap'] = null;
+            } else {
+                $attr['alamat'] = null;
+                $attr['nama_gedung'] = null;
+                $attr['no_kamar'] = null;
+                $attr['alamat_lengkap'] = request('alamat_lengkap');
+            }
+
             $attr['password'] = $updateUserRequest->password ? bcrypt($updateUserRequest->password) : $user->password;
             $attr['foto'] = $fotoUrl;
 

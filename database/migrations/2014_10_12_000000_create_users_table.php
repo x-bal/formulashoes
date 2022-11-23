@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('password');
             $table->char('telepon', 15)->nullable();
             $table->text('alamat')->nullable();
+            $table->string('nama_gedung')->nullable();
+            $table->string('no_kamar')->nullable();
+            $table->string('alamat_lengkap')->nullable();
             $table->string('foto')->nullable();
             $table->enum('level', ['Admin', 'User']);
             $table->integer('status')->default(0);

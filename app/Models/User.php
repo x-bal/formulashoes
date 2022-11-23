@@ -27,6 +27,9 @@ class User extends Authenticatable
         'level',
         'foto',
         'after_laundry',
+        'nama_gedung',
+        'no_kamar',
+        'alamat_lengkap'
     ];
 
     /**
@@ -61,5 +64,9 @@ class User extends Authenticatable
     public function feedback()
     {
         return $this->hasOne(Feedback::class);
+    }
+    public function alamat()
+    {
+        return $this->belongsTo(Alamat::class, 'alamat');
     }
 }

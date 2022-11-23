@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\Alamat;
 use App\Models\Order;
 use App\Models\User;
 use Carbon\Carbon;
@@ -39,9 +40,10 @@ class DashboardController extends Controller
     public function profile()
     {
         $title = 'My Profile';
+        $alamat = Alamat::get();
         $user = User::find(auth()->user()->id);
 
-        return view('dashboard.profile', compact('title', 'user'));
+        return view('dashboard.profile', compact('title', 'user', 'alamat'));
     }
 
     public function update(UpdateUserRequest $updateUserRequest, User $user)
@@ -57,6 +59,18 @@ class DashboardController extends Controller
                 $fotoUrl = $foto->storeAs('users', Str::slug($updateUserRequest->name) . '-' . Str::random(6) . '.' . $foto->extension());
             } else {
                 $fotoUrl = $user->foto;
+            }
+
+            if (request('alamat') != 'custom') {
+                $attr['alamat'] = request('alamat');
+                $attr['nama_gedung'] = request('nama_gedung');
+                $attr['no_kamar'] = request('no_kamar');
+                $attr['alamat_lengkap'] = null;
+            } else {
+                $attr['alamat'] = null;
+                $attr['nama_gedung'] = null;
+                $attr['no_kamar'] = null;
+                $attr['alamat_lengkap'] = request('alamat_lengkap');
             }
 
             $attr['password'] = $updateUserRequest->password ? bcrypt($updateUserRequest->password) : $user->password;

@@ -128,6 +128,33 @@
 
             $(".img-logo").attr('src', image)
         })
+
+        $(".collapseSidebar").on('click', function() {
+            let mode = localStorage.getItem('mode');
+            let logo = '';
+            let width = ''
+
+            if (mode == 'light') {
+                if ($(".vertical").hasClass("collapsed")) {
+                    logo = "{{ asset('images/side-white.png') }}"
+                    width = 50
+                } else {
+                    logo = "{{ asset('images/fs-white.png') }}";
+                    width = 140
+                }
+            } else {
+                if ($(".vertical").hasClass("collapsed")) {
+                    logo = "{{ asset('images/side-dark.png') }}"
+                    width = 50
+                } else {
+                    logo = "{{ asset('images/fs-dark.png') }}";
+                    width = 140
+                }
+            }
+
+            $(".img-logo").attr("width", width)
+            $(".img-logo").attr('src', logo)
+        })
     </script>
 
     @stack('script')
