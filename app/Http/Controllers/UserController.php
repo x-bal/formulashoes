@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\User\CreateUserRequest;
 use App\Http\Requests\User\UpdateUserRequest;
+use App\Models\Alamat;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -25,8 +26,9 @@ class UserController extends Controller
         $action = route('users.store');
         $method = 'POST';
         $title = 'Tambah User';
+        $alamat = Alamat::get();
 
-        return view('user.form', compact('user', 'action', 'method', 'title'));
+        return view('user.form', compact('user', 'action', 'method', 'title', 'alamat'));
     }
 
     public function store(CreateUserRequest $createUserRequest)
@@ -41,6 +43,18 @@ class UserController extends Controller
 
             $attr['password'] = bcrypt($createUserRequest->password);
             $attr['foto'] = $fotoUrl;
+
+            if (request('alamat') != 'custom') {
+                $attr['alamat'] = request('alamat');
+                $attr['nama_gedung'] = request('nama_gedung');
+                $attr['no_kamar'] = request('no_kamar');
+                $attr['alamat_lengkap'] = null;
+            } else {
+                $attr['alamat'] = null;
+                $attr['nama_gedung'] = null;
+                $attr['no_kamar'] = null;
+                $attr['alamat_lengkap'] = request('alamat_lengkap');
+            }
 
             User::create($attr);
 
@@ -63,8 +77,9 @@ class UserController extends Controller
         $action = route('users.update', $user->id);
         $method = 'PUT';
         $title = 'Update User';
+        $alamat = Alamat::get();
 
-        return view('user.form', compact('user', 'action', 'method', 'title'));
+        return view('user.form', compact('user', 'action', 'method', 'title', 'alamat'));
     }
 
     public function update(UpdateUserRequest $updateUserRequest, User $user)
