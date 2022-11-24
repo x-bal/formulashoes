@@ -29,7 +29,7 @@ class OrderController extends Controller
                 $orders = Order::whereDate('created_at', $date)->latest()->get();
             }
         } else {
-            if (auth()->user()->alamat == null || auth()->user()->alamat_lengkap == null) {
+            if (auth()->user()->alamat == null && auth()->user()->alamat_lengkap == null) {
                 return back();
             }
 

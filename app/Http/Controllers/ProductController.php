@@ -23,7 +23,7 @@ class ProductController extends Controller
         $products = Product::get();
 
         if (isUser()) {
-            if (auth()->user()->alamat == null || auth()->user()->alamat_lengkap == null) {
+            if (auth()->user()->alamat == null && auth()->user()->alamat_lengkap == null) {
                 return back();
             }
         }
