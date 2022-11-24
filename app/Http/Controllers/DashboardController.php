@@ -90,7 +90,7 @@ class DashboardController extends Controller
     public function history(Request $request)
     {
         $title = 'My History';
-        if (auth()->user()->alamat == null) {
+        if (auth()->user()->alamat == null || auth()->user()->alamat_lengkap == null) {
             return back();
         }
 
