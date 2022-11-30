@@ -20,26 +20,35 @@ class ApiController extends Controller
                 $uid = User::where('uid', $request->uid)->first();
 
                 if ($uid) {
-                    $order = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->where('no_urut', '!=', 0)->orderBy('no_urut', 'ASC')->first();
+                    $order = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->first();
 
                     if ($order) {
-                        $balance = $order->products()->sum('qty');
-                        $waktu = 10 * $balance;
-                        $keterangan = $order->status_laundry;
+                        $cek = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->where('no_urut', '!=', 0)->orderBy('no_urut', 'ASC')->first();
 
-                        $order->update(['device_id' => $device->id]);
+                        if ($cek) {
+                            $balance = $order->products()->sum('qty');
+                            $waktu = 10 * $balance;
+                            $keterangan = $order->status_laundry;
 
-                        return response()->json([
-                            'status' => 'success',
-                            'nama' => $uid->name,
-                            'waktu' => $waktu,
-                            'keterangan' => $keterangan,
-                            'balance' => $balance
-                        ]);
+                            $order->update(['device_id' => $device->id]);
+
+                            return response()->json([
+                                'status' => 'success',
+                                'nama' => $uid->name,
+                                'waktu' => $waktu,
+                                'keterangan' => $keterangan,
+                                'balance' => $balance
+                            ]);
+                        } else {
+                            return response()->json([
+                                'status' => 'failed',
+                                'message' => 'No urut tidak valid',
+                            ]);
+                        }
                     } else {
                         return response()->json([
                             'status' => 'failed',
-                            'message' => 'No urut tidak valid',
+                            'message' => 'Tidak ada order',
                         ]);
                     }
                 } else {
