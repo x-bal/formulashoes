@@ -50,7 +50,7 @@ class UserController extends Controller
                 $attr['no_kamar'] = request('no_kamar');
                 $attr['alamat_lengkap'] = null;
             } else {
-                $attr['alamat'] = null;
+                $attr['alamat'] = 'custom';
                 $attr['nama_gedung'] = null;
                 $attr['no_kamar'] = null;
                 $attr['alamat_lengkap'] = request('alamat_lengkap');
