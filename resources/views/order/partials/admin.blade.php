@@ -51,12 +51,14 @@
                     {{ $order->user->name }}
                 </td>
                 <td>
+                    @if($order->user->alamat != null)
                     @if($order->user->alamat != 'custom')
                     {{ $order->user->alamat->alamat }} <br>
                     Gedung : {{ $order->user->nama_gedung }} <br>
                     No Kamar : {{ $order->user->no_kamar }} <br>
                     @else
                     {{ $order->user->alamat_lengkap }}
+                    @endif
                     @endif
                 </td>
                 <td>Rp. {{ number_format($order->total_price, 0, ',', '.') }}</td>
