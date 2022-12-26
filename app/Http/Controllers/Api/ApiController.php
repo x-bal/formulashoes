@@ -48,7 +48,7 @@ class ApiController extends Controller
                     } else {
                         return response()->json([
                             'status' => 'failed',
-                            'message' => 'Tidak ada order',
+                            'message' => 'Silahkan Order',
                         ]);
                     }
                 } else {
@@ -74,7 +74,7 @@ class ApiController extends Controller
 
     public function upload(Request $request)
     {
-        if ($request->iddev != '' && $request->uid != '' && $request->image) {
+        if ($request->iddev != '' && $request->uid != '') {
             $device = Device::where('id_device', $request->iddev)->first();
 
             if ($device) {
@@ -84,8 +84,13 @@ class ApiController extends Controller
                     try {
                         DB::beginTransaction();
                         $order = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->orderBy('no_urut', 'ASC')->first();
-                        $image = $request->file('image');
-                        $imageUrl = $image->storeAs('orders/images', date('dmYHis') . rand(100, 999) . '.' . $image->extension());
+
+                        if ($request->image != null) {
+                            $image = $request->file('image');
+                            $imageUrl = $image->storeAs('orders/images', date('dmYHis') . rand(100, 999) . '.' . $image->extension());
+                        } else {
+                            $imageUrl = null;
+                        }
 
                         $order->update(['after_laundry' => $imageUrl, 'status_laundry' => 'Sedang Diproses']);
 

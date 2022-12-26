@@ -14,7 +14,7 @@
             <div class="card-footer">
                 <div class="row d-flex align-items-center justify-content-between">
                     <div class="col-auto">
-                        <span class="text-dark"><b>Rp. {{ number_format($product->harga, 0, ',', '.') }}</b></span>
+                        <span class=""><b>Rp. {{ number_format($product->harga, 0, ',', '.') }}</b></span>
                     </div>
                     <div class="col-auto">
                         <button type="button" class="btn btn-primary btn-sm btn-cart" data-toggle="modal" data-target="#cartModel" data-id="{{ $product->id }}">

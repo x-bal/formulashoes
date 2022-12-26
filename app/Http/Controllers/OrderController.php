@@ -76,8 +76,16 @@ class OrderController extends Controller
             $foto = $request->file('foto');
             $fotoUrl = $foto->storeAs('orders/foto', date('dmYHis') . rand(100, 999) . '.' . $foto->extension());
 
+            $orders = Order::where('user_id', $user->id)->orderBy('no_urut', 'DESC')->first();
+            if (count($orders) > 0) {
+                $no = $orders->no_urut += 1;
+            } else {
+                $no = 1;
+            }
+
             $attr = [
                 'user_id' => $user->id,
+                'no_urut' => $no,
                 'no_order' => 'FMS' . date('dmy') . rand(100, 999),
                 'total_price' => $total,
                 'payment_status' => 1,
