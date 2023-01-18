@@ -125,7 +125,7 @@ class ProductController extends Controller
     public function cart(Request $request)
     {
         $request->validate([
-            'product_id' => 'required|array',
+            'product_id' => 'required',
             'quant' => 'required|numeric'
         ]);
 
@@ -133,20 +133,43 @@ class ProductController extends Controller
             DB::beginTransaction();
 
             $user = User::find(auth()->user()->id);
+            $product = Product::find($request->product_id);
 
             if (count($user->products) == 0) {
-                $user->products()->attach($request->product_id, ['qty' => $request->quant]);
+                $product->users()->attach($user->id, ['qty' => $request->quant]);
             } else {
-                foreach ($user->products as $prod) {
-                    $qty = $prod->pivot->qty;
-                    $user->products()->syncWithPivotValues($request->product_id, ['qty' => $qty + $request->quant]);
+                $pivot = DB::table('product_user')->where(['product_id' => $product->id, 'user_id' => $user->id])->first();
+                if ($pivot) {
+                    $product->users()->syncWithPivotValues($user->id, ['qty' => $pivot->qty + $request->quant]);
+                } else {
+                    $product->users()->syncWithPivotValues($user->id, ['qty' => $request->quant]);
                 }
             }
-
 
             DB::commit();
 
             return back()->with('success', 'Product berhasil ditambahkan ke cart');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return back()->with('error', $th->getMessage());
+        }
+    }
+
+    public function quantity(Request $request)
+    {
+        try {
+            DB::beginTransaction();
+
+            $user = User::find(auth()->user()->id);
+
+            foreach ($user->products as $prod) {
+                $qty = $prod->pivot->qty;
+                $user->products()->syncWithPivotValues($request->product_id, ['qty' => $qty + $request->quant]);
+            }
+
+            DB::commit();
+
+            // return back()->with('success', 'Product berhasil ditambahkan ke cart');
         } catch (\Throwable $th) {
             DB::rollBack();
             return back()->with('error', $th->getMessage());

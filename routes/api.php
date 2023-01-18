@@ -3,7 +3,6 @@
 use App\Http\Controllers\Api\ApiController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\OrderController;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/products/cart', [ProductController::class, 'cart'])->name('products.cart');

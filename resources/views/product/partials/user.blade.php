@@ -39,7 +39,7 @@
                 <form action="{{ route('products.cart') }}" method="post">
                     @csrf
                     <div class="modal-body">
-                        <input type="hidden" name="product_id[]" class="product_id" value="">
+                        <input type="hidden" name="product_id" class="product_id" value="">
                         <div class="input-group">
                             <span class="input-group-prepend">
                                 <button type="button" class="btn btn-outline-primary btn-number" disabled="disabled" data-type="minus" data-field="quant">

@@ -77,7 +77,7 @@ class OrderController extends Controller
             $fotoUrl = $foto->storeAs('orders/foto', date('dmYHis') . rand(100, 999) . '.' . $foto->extension());
 
             $orders = Order::where('user_id', $user->id)->orderBy('no_urut', 'DESC')->first();
-            if (count($orders) > 0) {
+            if ($orders) {
                 $no = $orders->no_urut += 1;
             } else {
                 $no = 1;
