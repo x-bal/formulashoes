@@ -67,6 +67,6 @@ class User extends Authenticatable
     }
     public function alamat()
     {
-        return $this->belongsTo(Alamat::class, 'alamat');
+        return $this->belongsTo(Alamat::class, 'alamat', 'id');
     }
 }

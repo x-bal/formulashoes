@@ -12,6 +12,6 @@ class Alamat extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'alamat');
+        return $this->hasMany(User::class, 'alamat', 'id');
     }
 }
