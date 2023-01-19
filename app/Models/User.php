@@ -65,7 +65,7 @@ class User extends Authenticatable
     {
         return $this->hasOne(Feedback::class);
     }
-    public function alamat()
+    public function alamatUser()
     {
         return $this->belongsTo(Alamat::class, 'alamat', 'id');
     }

@@ -53,7 +53,7 @@
                 <td>
                     @if($order->user->alamat != null)
                     @if($order->user->alamat != 'custom')
-                    {{ $order->user->alamat->alamat }} <br>
+                    {{ $order->user->alamatUser->alamat }} <br>
                     Gedung : {{ $order->user->nama_gedung }} <br>
                     No Kamar : {{ $order->user->no_kamar }} <br>
                     @else
