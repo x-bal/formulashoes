@@ -104,7 +104,7 @@ class ApiController extends Controller
                         DB::rollBack();
                         return response()->json([
                             'status' => 'failed',
-                            'message' => 'Image gagal diupload'
+                            'message' => $th->getMessage()
                         ]);
                     }
                 } else {
