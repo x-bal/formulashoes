@@ -85,7 +85,7 @@ class ApiController extends Controller
                         DB::beginTransaction();
                         $order = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->orderBy('no_urut', 'ASC')->first();
 
-                        if ($request->image != null) {
+                        if ($request->file('image') != null) {
                             $image = $request->file('image');
                             $imageUrl = $image->storeAs('orders/images', date('dmYHis') . rand(100, 999) . '.' . $image->extension());
                         } else {
