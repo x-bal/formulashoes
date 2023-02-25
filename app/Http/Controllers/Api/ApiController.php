@@ -23,7 +23,7 @@ class ApiController extends Controller
                     $order = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->first();
 
                     if ($order) {
-                        $cek = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->where('no_urut', '!=', 0)->orderBy('no_urut', 'ASC')->first();
+                        $cek = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked', 'payment_status' => 2])->where('no_urut', '!=', 0)->orderBy('no_urut', 'ASC')->first();
 
                         if ($cek) {
                             $balance = $order->products()->sum('qty');
