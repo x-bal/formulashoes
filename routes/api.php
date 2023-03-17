@@ -14,3 +14,5 @@ Route::get('/order/nourut', [OrderController::class, 'nourut']);
 // Route For Device
 Route::get('/tapping', [ApiController::class, 'tapping']);
 Route::post('/upload', [ApiController::class, 'upload']);
+
+Route::post('notification', [ApiController::class, 'notification']);

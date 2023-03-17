@@ -23,7 +23,7 @@ class ApiController extends Controller
                     $order = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked'])->first();
 
                     if ($order) {
-                        $cek = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked', 'payment_status' => 2])->where('no_urut', '!=', 0)->orderBy('no_urut', 'ASC')->first();
+                        $cek = Order::where(['user_id' => $uid->id, 'status_laundry' => 'Booked', 'payment_status' => 2])->where('no_urut', '>', 0)->orderBy('no_urut', 'ASC')->first();
 
                         if ($cek) {
                             $balance = $order->products()->sum('qty');
@@ -125,6 +125,34 @@ class ApiController extends Controller
                 'status' => 'failed',
                 'message' => 'Salah Parameter'
             ]);
+        }
+    }
+
+    public function notification(Request $request)
+    {
+        try {
+            $notification_body = json_decode($request->getContent(), true);
+            $invoice = $notification_body['order_id'];
+            $transaction_id = $notification_body['transaction_id'];
+            $status_code = $notification_body['status_code'];
+            $order = Order::where('no_order', $invoice)->first();
+            if (!$order)
+                return ['code' => 0, 'messgae' => 'Terjadi kesalahan | Pembayaran tidak valid'];
+            switch ($status_code) {
+                case '200':
+                    $order->payment_status = 2;
+                    break;
+                case '201':
+                    $order->payment_status = 1;
+                    break;
+                case '202':
+                    $order->payment_status = 4;
+                    break;
+            }
+            $order->save();
+            return response('Ok', 200)->header('Content-Type', 'text/plain');
+        } catch (\Exception $e) {
+            return response('Error', 404)->header('Content-Type', 'text/plain');
         }
     }
 }
