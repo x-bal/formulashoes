@@ -98,9 +98,9 @@ class DashboardController extends Controller
             $from = Carbon::parse($request->from)->format('Y-m-d 00:00:00');
             $to = Carbon::parse($request->to)->addDay(1)->format('Y-m-d 00:00:00');
 
-            $orders = Order::where('user_id', auth()->user()->id)->where('created_at', '>=', $from)->where('created_at', '<', $to)->where('status_laundry', 'Selesai')->get();
+            $orders = Order::where('user_id', auth()->user()->id)->where('created_at', '>=', $from)->where('created_at', '<', $to)->whereIn('status_laundry', ['Selesai', 'Gagal'])->get();
         } else {
-            $orders = Order::where('user_id', auth()->user()->id)->where('status_laundry', 'Selesai')->latest()->get();
+            $orders = Order::where('user_id', auth()->user()->id)->whereIn('status_laundry', ['Selesai', 'Gagal'])->latest()->get();
         }
 
         return view('dashboard.history', compact('title', 'orders'));
