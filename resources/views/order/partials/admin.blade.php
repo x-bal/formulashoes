@@ -88,6 +88,9 @@
                     @if($order->status_laundry == 'Selesai')
                     <button type="button" class="btn btn-sm btn-success btn-laundry text-white" data-toggle="modal" data-target="#modalStatusLaundry" data-id="{{ $order->no_order }}" data-status="{{ $order->status_laundry }}">{{ $order->status_laundry }}</button>
                     @endif
+                    @if($order->status_laundry == 'Gagal')
+                    <button type="button" class="btn btn-sm btn-danger btn-laundry text-white" data-toggle="modal" data-target="#modalStatusLaundry" data-id="{{ $order->no_order }}" data-status="{{ $order->status_laundry }}">{{ $order->status_laundry }}</button>
+                    @endif
                 </td>
             </tr>
             @endforeach
@@ -115,6 +118,7 @@
                             <option value="Booked">Booked</option>
                             <option value="Sedang Diproses">Sedang Diproses</option>
                             <option value="Selesai">Selesai</option>
+                            <option value="Gagal">Gagal</option>
                         </select>
                     </div>
                 </div>

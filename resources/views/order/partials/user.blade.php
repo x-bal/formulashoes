@@ -67,6 +67,9 @@
                     @if($order->status_laundry == 'Selesai')
                     <div class="badge badge-success text-white p-2">{{ $order->status_laundry }}</div>
                     @endif
+                    @if($order->status_laundry == 'Gagal')
+                    <div class="badge badge-danger text-white p-2">{{ $order->status_laundry }}</div>
+                    @endif
                 </td>
             </tr>
             @endforeach
