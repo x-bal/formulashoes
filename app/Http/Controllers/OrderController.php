@@ -39,10 +39,10 @@ class OrderController extends Controller
                 $from = Carbon::parse($request->from)->format('Y-m-d 00:00:00');
                 $to = Carbon::parse($request->to)->addDay(1)->format('Y-m-d 00:00:00');
 
-                $orders = Order::where('user_id', auth()->user()->id)->where('created_at', '>=', $from)->where('created_at', '<', $to)->where('status_laundry', '!=', 'Selesai')->get();
+                $orders = Order::where('user_id', auth()->user()->id)->where('created_at', '>=', $from)->where('created_at', '<', $to)->whereIn('status_laundry', ['Booked', 'Sedang Diproses'])->get();
             } else {
                 $date = Carbon::now('Asia/Jakarta')->format('Y-m-d');
-                $orders = Order::where('user_id', auth()->user()->id)->where('status_laundry', '!=', 'Selesai')->whereDate('created_at', $date)->orderBy('no_urut')->get();
+                $orders = Order::where('user_id', auth()->user()->id)->whereIn('status_laundry', ['Booked', 'Sedang Diproses'])->whereDate('created_at', $date)->orderBy('no_urut')->get();
             }
         }
 
