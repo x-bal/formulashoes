@@ -147,6 +147,7 @@ class ApiController extends Controller
                     break;
                 case '202':
                     $order->payment_status = 4;
+                    $order->status_laundry = "Gagal";
                     break;
             }
             $order->save();
